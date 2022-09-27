@@ -15,13 +15,18 @@
                          presenter:(RNNBasePresenter *)presenter
                       eventEmitter:(RNNEventEmitter *)eventEmitter
               childViewControllers:(NSArray *)childViewControllers {
-    self = [super initWithLayoutInfo:layoutInfo
-                             creator:creator
-                             options:options
-                      defaultOptions:defaultOptions
-                           presenter:presenter
-                        eventEmitter:eventEmitter
-                childViewControllers:childViewControllers];
+    self = [self init];
+    self.options = options;
+    self.defaultOptions = defaultOptions;
+    self.layoutInfo = layoutInfo;
+    self.creator = creator;
+    self.eventEmitter = eventEmitter;
+    self.presenter = (RNNStackPresenter *)presenter;
+    [self loadChildren:childViewControllers];
+    [self.presenter bindViewController:self];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
+
     _stackDelegate = [[StackControllerDelegate alloc] initWithEventEmitter:self.eventEmitter];
     self.delegate = _stackDelegate;
     self.navigationBar.prefersLargeTitles = YES;

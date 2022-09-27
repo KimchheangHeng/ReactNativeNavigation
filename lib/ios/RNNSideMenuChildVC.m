@@ -17,13 +17,18 @@
                       eventEmitter:(RNNEventEmitter *)eventEmitter
                childViewController:(UIViewController *)childViewController
                               type:(RNNSideMenuChildType)type {
-    self = [super initWithLayoutInfo:layoutInfo
-                             creator:creator
-                             options:options
-                      defaultOptions:defaultOptions
-                           presenter:presenter
-                        eventEmitter:eventEmitter
-                childViewControllers:nil];
+    self = [self init];
+    self.options = options;
+    self.defaultOptions = defaultOptions;
+    self.layoutInfo = layoutInfo;
+    self.creator = creator;
+    self.eventEmitter = eventEmitter;
+    self.presenter = presenter;
+    [self loadChildren:nil];
+    [self.presenter bindViewController:self];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
+    
     self.type = type;
     self.child = childViewController;
     return self;

@@ -30,13 +30,19 @@
     _bottomTabPresenter = bottomTabPresenter;
     _dotIndicatorPresenter = dotIndicatorPresenter;
     _pendingChildViewControllers = childViewControllers;
-    self = [super initWithLayoutInfo:layoutInfo
-                             creator:creator
-                             options:options
-                      defaultOptions:defaultOptions
-                           presenter:presenter
-                        eventEmitter:eventEmitter
-                childViewControllers:childViewControllers];
+    
+    self = [self init];
+    self.options = options;
+    self.defaultOptions = defaultOptions;
+    self.layoutInfo = layoutInfo;
+    self.creator = creator;
+    self.eventEmitter = eventEmitter;
+    self.presenter = presenter;
+    [self loadChildren:childViewControllers];
+    [self.presenter bindViewController:self];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
+      
     if (@available(iOS 13.0, *)) {
         self.tabBar.standardAppearance = [UITabBarAppearance new];
     }

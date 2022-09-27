@@ -3,6 +3,29 @@
 
 @implementation RNNSplitViewController
 
+- (instancetype)initWithLayoutInfo:(RNNLayoutInfo *)layoutInfo
+                           creator:(id<RNNComponentViewCreator>)creator
+                           options:(RNNNavigationOptions *)options
+                    defaultOptions:(RNNNavigationOptions *)defaultOptions
+                         presenter:(RNNBasePresenter *)presenter
+                      eventEmitter:(RNNEventEmitter *)eventEmitter
+              childViewControllers:(NSArray *)childViewControllers {
+    
+    self = [self init];
+    self.options = options;
+    self.defaultOptions = defaultOptions;
+    self.layoutInfo = layoutInfo;
+    self.creator = creator;
+    self.eventEmitter = eventEmitter;
+    self.presenter = presenter;
+    [self loadChildren:nil];
+    [self.presenter bindViewController:self];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
+    
+    return self;
+}
+
 - (void)setViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers {
     [super setViewControllers:viewControllers];
     UIViewController<UISplitViewControllerDelegate> *masterViewController = viewControllers[0];

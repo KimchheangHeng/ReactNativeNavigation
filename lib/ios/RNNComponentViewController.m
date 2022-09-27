@@ -13,13 +13,18 @@
                          presenter:(RNNComponentPresenter *)presenter
                            options:(RNNNavigationOptions *)options
                     defaultOptions:(RNNNavigationOptions *)defaultOptions {
-    self = [super initWithLayoutInfo:layoutInfo
-                             creator:creator
-                             options:options
-                      defaultOptions:defaultOptions
-                           presenter:presenter
-                        eventEmitter:eventEmitter
-                childViewControllers:nil];
+    self = [self init];
+    self.options = options;
+    self.defaultOptions = defaultOptions;
+    self.layoutInfo = layoutInfo;
+    self.creator = creator;
+    self.eventEmitter = eventEmitter;
+    self.presenter = presenter;
+    [self loadChildren:nil];
+    [self.presenter bindViewController:self];
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    [self.presenter applyOptionsOnInit:self.resolveOptions];
+    
     if (@available(iOS 13.0, *)) {
         self.navigationItem.standardAppearance = [UINavigationBarAppearance new];
         self.navigationItem.scrollEdgeAppearance = [UINavigationBarAppearance new];

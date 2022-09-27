@@ -4,27 +4,27 @@
 
 @implementation UIViewController (LayoutProtocol)
 
-- (instancetype)initWithLayoutInfo:(RNNLayoutInfo *)layoutInfo
-                           creator:(id<RNNComponentViewCreator>)creator
-                           options:(RNNNavigationOptions *)options
-                    defaultOptions:(RNNNavigationOptions *)defaultOptions
-                         presenter:(RNNBasePresenter *)presenter
-                      eventEmitter:(RNNEventEmitter *)eventEmitter
-              childViewControllers:(NSArray *)childViewControllers {
-    self = [self init];
-    self.options = options;
-    self.defaultOptions = defaultOptions;
-    self.layoutInfo = layoutInfo;
-    self.creator = creator;
-    self.eventEmitter = eventEmitter;
-    self.presenter = presenter;
-    [self loadChildren:childViewControllers];
-    [self.presenter bindViewController:self];
-    self.extendedLayoutIncludesOpaqueBars = YES;
-    [self.presenter applyOptionsOnInit:self.resolveOptions];
-
-    return self;
-}
+//- (instancetype)initWithLayoutInfo:(RNNLayoutInfo *)layoutInfo
+//                           creator:(id<RNNComponentViewCreator>)creator
+//                           options:(RNNNavigationOptions *)options
+//                    defaultOptions:(RNNNavigationOptions *)defaultOptions
+//                         presenter:(RNNBasePresenter *)presenter
+//                      eventEmitter:(RNNEventEmitter *)eventEmitter
+//              childViewControllers:(NSArray *)childViewControllers {
+//    self = [self init];
+//    self.options = options;
+//    self.defaultOptions = defaultOptions;
+//    self.layoutInfo = layoutInfo;
+//    self.creator = creator;
+//    self.eventEmitter = eventEmitter;
+//    self.presenter = presenter;
+//    [self loadChildren:childViewControllers];
+//    [self.presenter bindViewController:self];
+//    self.extendedLayoutIncludesOpaqueBars = YES;
+//    [self.presenter applyOptionsOnInit:self.resolveOptions];
+//
+//    return self;
+//}
 
 - (void)mergeOptions:(RNNNavigationOptions *)options {
     [self.options mergeOptions:options];

@@ -10,13 +10,13 @@ typedef void (^RNNReactViewReadyCompletionBlock)(void);
 
 @required
 
-- (instancetype)initWithLayoutInfo:(RNNLayoutInfo *)layoutInfo
-                           creator:(id<RNNComponentViewCreator>)creator
-                           options:(RNNNavigationOptions *)options
-                    defaultOptions:(RNNNavigationOptions *)defaultOptions
-                         presenter:(RNNBasePresenter *)presenter
-                      eventEmitter:(RNNEventEmitter *)eventEmitter
-              childViewControllers:(NSArray *)childViewControllers;
+//- (instancetype)initWithLayoutInfo:(RNNLayoutInfo *)layoutInfo
+//                           creator:(id<RNNComponentViewCreator>)creator
+//                           options:(RNNNavigationOptions *)options
+//                    defaultOptions:(RNNNavigationOptions *)defaultOptions
+//                         presenter:(RNNBasePresenter *)presenter
+//                      eventEmitter:(RNNEventEmitter *)eventEmitter
+//              childViewControllers:(NSArray *)childViewControllers;
 
 - (void)render;
 
